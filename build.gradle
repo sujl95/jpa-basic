@@ -1,0 +1,25 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'study_jpa_basic'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    runtimeOnly 'com.h2database:h2'
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.3.10.Final'
+    runtime group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.3.10.Final'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}
