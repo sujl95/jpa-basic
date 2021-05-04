@@ -15,10 +15,14 @@ public class JpaMain {
 
 
 		try {
-			/**
-			 * 코드 작성
-			 */
+			Member member = new Member();
+			member.setId(3L);
+			member.setName("HelloC");
+			System.out.println("persist 전");
+			em.persist(member);
+			System.out.println("persist 후");
 			tx.commit(); // 커밋 해주어야 한다.
+			System.out.println("commit 후");
 		} catch (Exception e) {
 			tx.rollback();
 		} finally {
