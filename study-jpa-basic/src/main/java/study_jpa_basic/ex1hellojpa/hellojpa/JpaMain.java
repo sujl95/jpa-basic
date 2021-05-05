@@ -15,15 +15,28 @@ public class JpaMain {
 
 
 		try {
+			Member member = new Member();
+			member.setUsername("A");
+			Member member1 = new Member();
+			member.setUsername("B");
+			Member member2 = new Member();
+			member.setUsername("C");
 
-			//영속
-			Member member = em.find(Member.class, 150L);
-			member.setName("AAAAA");
+			System.out.println("============");
+			em.persist(member);
+			// DB SEQ = 1	|	1
+			// DB SEQ = 51	|	2
+			// DB SEQ = 101	|	3
 
-			em.detach(member);
+			em.persist(member1);
+			em.persist(member2);
 
-			System.out.println("==================");
+			System.out.println("member.getId() = " + member.getId());
+			System.out.println("member1.getId() = " + member1.getId());
+			System.out.println("member2.getId() = " + member2.getId());
+
 			tx.commit();
+
 		} catch (Exception e) {
 			tx.rollback();
 		} finally {
