@@ -1,0 +1,24 @@
+plugins {
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group 'jpabook'
+version '1.0-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+    runtime group: 'com.h2database', name: 'h2', version: '1.4.200'
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.3.10.Final'
+    runtime group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.3.10.Final'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}
