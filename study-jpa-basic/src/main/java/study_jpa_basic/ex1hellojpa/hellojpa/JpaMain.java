@@ -15,25 +15,26 @@ public class JpaMain {
 
 
 		try {
+
+			Team team = new Team();
+			team.setName("TeamA");
+			em.persist(team);
+
 			Member member = new Member();
-			member.setUsername("A");
-			Member member1 = new Member();
-			member.setUsername("B");
-			Member member2 = new Member();
-			member.setUsername("C");
-
-			System.out.println("============");
+			member.setUsername("member1");
+			member.setTeam(team);
 			em.persist(member);
-			// DB SEQ = 1	|	1
-			// DB SEQ = 51	|	2
-			// DB SEQ = 101	|	3
 
-			em.persist(member1);
-			em.persist(member2);
 
-			System.out.println("member.getId() = " + member.getId());
-			System.out.println("member1.getId() = " + member1.getId());
-			System.out.println("member2.getId() = " + member2.getId());
+			em.flush();
+			em.clear();
+
+			Member findMember = em.find(Member.class, member.getId());
+			Team findTeam = findMember.getTeam();
+			System.out.println("findTeam.getName() = " + findTeam.getName());
+
+			Team newTeam = em.find(Team.class, 100L);
+			findMember.setTeam(newTeam);
 
 			tx.commit();
 
