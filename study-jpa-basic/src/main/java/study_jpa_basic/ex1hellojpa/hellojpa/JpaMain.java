@@ -1,7 +1,5 @@
 package study_jpa_basic.ex1hellojpa.hellojpa;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -18,23 +16,19 @@ public class JpaMain {
 
 		try {
 
-			Team team = new Team();
-			team.setName("TeamA");
-			em.persist(team);
-
 			Member member = new Member();
 			member.setUsername("member1");
-			member.setTeam(team);
 			em.persist(member);
+
+			Team team = new Team();
+			team.setName("TeamA");
+			team.getMembers().add(member);
+			em.persist(team);
 
 
 			em.flush();
 			em.clear();
 
-			Member findMember = em.find(Member.class, member.getId());
-			List<Member> members = findMember.getTeam().getMembers();
-
-			members.forEach(Member::getUsername);
 
 			tx.commit();
 
