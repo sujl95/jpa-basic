@@ -7,6 +7,11 @@
         <class>study_jpa_basic.ex1hellojpa.hellojpa.Team</class>
         <class>study_jpa_basic.ex1hellojpa.hellojpa.Locker</class>
         <class>study_jpa_basic.ex1hellojpa.hellojpa.Product</class>
+        <class>study_jpa_basic.ex1hellojpa.hellojpa.MemberProduct</class>
+        <class>study_jpa_basic.ex1hellojpa.hellojpa.Album</class>
+        <class>study_jpa_basic.ex1hellojpa.hellojpa.Book</class>
+        <class>study_jpa_basic.ex1hellojpa.hellojpa.Item</class>
+        <class>study_jpa_basic.ex1hellojpa.hellojpa.Movie</class>
         <properties>
             <!-- 필수 속성 -->
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
