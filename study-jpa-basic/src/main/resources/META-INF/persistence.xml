@@ -12,6 +12,8 @@
         <class>study_jpa_basic.ex1hellojpa.hellojpa.Book</class>
         <class>study_jpa_basic.ex1hellojpa.hellojpa.Item</class>
         <class>study_jpa_basic.ex1hellojpa.hellojpa.Movie</class>
+        <class>study_jpa_basic.ex1hellojpa.hellojpa.Parent</class>
+        <class>study_jpa_basic.ex1hellojpa.hellojpa.Child</class>
         <properties>
             <!-- 필수 속성 -->
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
