@@ -36,7 +36,6 @@ public class Order extends BaseEntity{
 	@JoinColumn(name = "DELIVERY_ID")
 	private Delivery delivery;
 
-
 	@OneToMany(mappedBy = "order", cascade = ALL)
 	private List<OrderItem> orderItems = new ArrayList<>();
 
