@@ -28,13 +28,14 @@ public class JpaMain {
 			em.flush();
 			em.clear();
 
-			List<MemberDTO> result = em.createQuery("select new jpql.MemberDTO(m.username, m.age) from Member m",
-					MemberDTO.class)
+			List<Member> members = em.createQuery("select m  from Member m order by  m.age desc ", Member.class)
+					.setFirstResult(1)
+					.setMaxResults(10)
 					.getResultList();
 
-			MemberDTO memberDTO = result.get(0);
-			System.out.println("memberDTO.getUsername() = " + memberDTO.getUsername());
-			System.out.println("memberDTO.getAge() = " + memberDTO.getAge());
+			System.out.println("members.get(0) = " + members.get(0));
+
+
 
 			tx.commit();
 		} catch (Exception e) {
