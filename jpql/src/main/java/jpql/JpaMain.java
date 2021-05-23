@@ -1,5 +1,7 @@
 package jpql;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -23,10 +25,16 @@ public class JpaMain {
 			member.setAge(10);
 			em.persist(member);
 
-			TypedQuery<Member> query = em.createQuery("select m from Member m where m.username = :username", Member.class);
-			query.setParameter("username", "member1");
-			Member singleResult = query.getSingleResult();
-			System.out.println("singleResult = " + singleResult);
+			em.flush();
+			em.clear();
+
+			List<MemberDTO> result = em.createQuery("select new jpql.MemberDTO(m.username, m.age) from Member m",
+					MemberDTO.class)
+					.getResultList();
+
+			MemberDTO memberDTO = result.get(0);
+			System.out.println("memberDTO.getUsername() = " + memberDTO.getUsername());
+			System.out.println("memberDTO.getAge() = " + memberDTO.getAge());
 
 			tx.commit();
 		} catch (Exception e) {
