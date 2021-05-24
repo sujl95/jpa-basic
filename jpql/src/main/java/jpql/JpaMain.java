@@ -20,20 +20,35 @@ public class JpaMain {
 
 
 		try {
+			Team teamA = new Team();
+			teamA.setName("팀A");
+			em.persist(teamA);
+
 			Member member = new Member();
-			member.setUsername("관리자1");
+			member.setUsername("회원1");
+			member.setTeam(teamA);
 			em.persist(member);
 
+			Team teamB = new Team();
+			teamB.setName("팀B");
+			em.persist(teamB);
+
 			Member member2 = new Member();
-			member2.setUsername("관리자2");
+			member2.setUsername("회원2");
+			member2.setTeam(teamA);
 			em.persist(member2);
+
+			Member member3 = new Member();
+			member3.setUsername("회원3");
+			member3.setTeam(teamB);
+			em.persist(member3);
 
 			em.flush();
 			em.clear();
 
-			String query = "select size(t.members) from Team t";
+			String query = "select m from Member m";
 
-			List<Integer> result = em.createQuery(query, Integer.class)
+			List<Member> result = em.createQuery(query, Member.class)
 					.getResultList();
 
 			result.forEach(System.out::println);

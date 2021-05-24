@@ -7,6 +7,6 @@ import org.hibernate.type.StandardBasicTypes;
 public class MyH2Dialect extends H2Dialect {
 
 	public MyH2Dialect() {
-		registerFunction("group_conat", new StandardSQLFunction("group_concat", StandardBasicTypes.STRING));
+		registerFunction("group_concat", new StandardSQLFunction("group_concat", StandardBasicTypes.STRING));
 	}
 }
