@@ -24,10 +24,10 @@ public class JpaMain {
 			teamA.setName("팀A");
 			em.persist(teamA);
 
-			Member member = new Member();
-			member.setUsername("회원1");
-			member.setTeam(teamA);
-			em.persist(member);
+			Member member1 = new Member();
+			member1.setUsername("회원1");
+			member1.setTeam(teamA);
+			em.persist(member1);
 
 			Team teamB = new Team();
 			teamB.setName("팀B");
@@ -46,12 +46,19 @@ public class JpaMain {
 			em.flush();
 			em.clear();
 
-			String query = "select m from Member m";
+			String query = "select t from Team t";
 
-			List<Member> result = em.createQuery(query, Member.class)
+			List<Team> result = em.createQuery(query, Team.class)
+					.setFirstResult(0)
+					.setMaxResults(2)
 					.getResultList();
 
-			result.forEach(System.out::println);
+			for (Team team : result) {
+				System.out.println("team.getName() = " + team.getName() + "|members=" + team.getId());
+				for (Member member : team.getMembers()) {
+					System.out.println("-> member = " + member);
+				}
+			}
 
 			tx.commit();
 		} catch (Exception e) {
